@@ -6,7 +6,7 @@ import edu.uci.ics.crawler4j.fetcher.PageFetcher;
 import edu.uci.ics.crawler4j.robotstxt.RobotstxtConfig;
 import edu.uci.ics.crawler4j.robotstxt.RobotstxtServer;
 
-public class Client {
+public class SampleController {
 
     public static void main(String[] args) {
         String crawlStorageFolder = System.getProperty("CrawlStorageFolder");
@@ -17,7 +17,7 @@ public class Client {
         CrawlConfig config = new CrawlConfig();
         config.setCrawlStorageFolder(crawlStorageFolder);
         config.setIncludeHttpsPages(true);
-        config.setMaxDepthOfCrawling(0);
+        // config.setMaxDepthOfCrawling(0);
 
         PageFetcher pageFetcher = new PageFetcher(config);
         RobotstxtConfig robotstxtConfig = new RobotstxtConfig();
@@ -29,9 +29,11 @@ public class Client {
             throw new RuntimeException(e);
         }
 
-        controller.addSeed("https://www.apple.com/jp/");
+        controller.addSeed("https://sumeragizzz.github.io/crawler4j-examples/index.html?param=AAA");
 
         controller.start(SampleCrawler.class, 1);
+
+        controller.shutdown();
     }
 
 }
